@@ -39,3 +39,20 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Игнорируем все файлы Docker Compose, если они не должны быть в репозитории
+docker-compose.override.yml
+docker-compose.yml
+
+# Игнорируем директории с данными Docker
+.docker/
+.docker-compose/
+
+# Игнорируем контейнеры и тома Docker
+*.log
+docker_data/
+
+# Игнорируем файлы сборки контейнеров
+*.tar
+*.img
+
