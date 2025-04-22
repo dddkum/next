@@ -13,7 +13,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Branch {
+model Filial {
   id        Int      @id @default(autoincrement())
   name      String
   location  String
@@ -25,8 +25,8 @@ model Branch {
 model Team {
   id        Int      @id @default(autoincrement())
   name      String
-  branch    Branch   @relation(fields: [branchId], references: [id])
-  branchId  Int
+  filial    Filial   @relation(fields: [filialId], references: [id])
+  filialId  Int
   members   User[]
 }
 
@@ -34,8 +34,8 @@ model Sale {
   id        Int      @id @default(autoincrement())
   amount    Float
   date      DateTime @default(now())
-  branch    Branch   @relation(fields: [branchId], references: [id])
-  branchId  Int
+  filial    Filial   @relation(fields: [filialId], references: [id])
+  filialId  Int
 }
 
 model User {

@@ -4,14 +4,14 @@ const prisma = new PrismaClient();
 
 async function main() {
     // Создание филиалов
-    const branch1 = await prisma.branch.create({
+    const filial1 = await prisma.filial.create({
         data: {
             name: "Центральный офис",
             location: "Москва",
         },
     });
 
-    const branch2 = await prisma.branch.create({
+    const filial2 = await prisma.filial.create({
         data: {
             name: "Филиал СПб",
             location: "Санкт-Петербург",
@@ -22,14 +22,14 @@ async function main() {
     const team1 = await prisma.team.create({
         data: {
             name: "Отдел продаж",
-            branchId: branch1.id,
+            filialId: filial1.id,
         },
     });
 
     const team2 = await prisma.team.create({
         data: {
             name: "Технический отдел",
-            branchId: branch2.id,
+            filialId: filial2.id,
         },
     });
 
@@ -65,11 +65,11 @@ async function main() {
         data: [
             {
                 amount: 150000,
-                branchId: branch1.id,
+                filialId: filial1.id,
             },
             {
                 amount: 87000,
-                branchId: branch2.id,
+                filialId: filial1.id,
             },
         ],
     });
