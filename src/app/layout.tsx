@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { QueryProvider } from "@/shared/providers/query-provider";
+import { ReactNode } from "react";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
     title: "Create Next App",
@@ -13,11 +16,16 @@ const interSans = Inter({
     subsets: ["latin"],
 });
 
-export default function RootLayout({
+export default async function RootLayout({
     children,
 }: {
-    children: React.ReactNode;
+    children: ReactNode;
 }) {
+    const cookieStore = await cookies();
+    const token = cookieStore.get("auth_token");
+    if (!token) {
+        redirect("/login");
+    }
     return (
         <html lang="en">
             <body
